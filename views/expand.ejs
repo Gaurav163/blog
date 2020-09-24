@@ -1,0 +1,98 @@
+<!-- <h1>Welcome !</h1> -->
+<%- include('part/header') %>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+    <style>
+        #sbody img {
+            max-width: 100%;
+            max-height: 100vh;
+        }
+    </style>
+
+    <div class="container jumbotron " style="margin :20px;width:100%">
+        <div class="float-left">
+            <h2>Welome !</h2>
+
+        </div>
+        <div class="float-right ">
+            <% if(name !=="logedout") {%>
+                <div class="float-left ">
+                    <%= name %> !</div>
+                <div class="float-right ">
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit">LOG OUT</button>
+
+                    </form>
+                </div>
+                <%} else{ %>
+
+                    <a href="/login"> LOG IN</a>
+                    <a> || </a>
+                    <a href="/register"> Register</a>
+                    <% } %>
+
+        </div>
+    </div>
+
+    <div class="btn btn-warning">
+        <a href="/addblog"> Add blog</a>
+    </div>
+
+
+
+    <div class="container   " style="margin: 50px auto;border:blue solid 5px;padding:20px">
+
+
+        <h1>
+            <%= blog["title"] %>
+        </h1>
+
+        <div> By :
+            <%= blog["username"] %>
+
+                ,
+                <% var x= "just now" ;var y=blog.did;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
+                    <%= x %>
+        </div>
+        <div style="border-left: 10px grey solid;padding-left:5px" id="sbody">
+            <%- blog.sbody %>
+        </div>
+        <h2>Comments</h2>
+        <div>
+            <%  for(var j=0;j < blog["comments"].length ;j++) { %>
+                <div style="border:solid; margin:10px 10px 10px 50px ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">
+                    <div>
+                        <h4>
+                            <%=blog["comments"][j]["username"]%> ,
+                                <%  x= "just now"; y=blog["comments"][j].did ;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
+                                    <%= x %>
+                        </h4>
+                    </div>
+                    <%- blog["comments"][j]["sbody"] %>
+                </div>
+
+                <%  }   %>
+        </div>
+
+
+
+
+        <form action="/addcomment/<%=blog['mid']%>" method="POST">
+            <textarea type="text" placeholder="Comment" name="body" rows="4" cols="50" required></textarea>
+            <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div>
+            <button type="submit" class="btn btn-primary"> POST</button>
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+    <%- include('part/footer') %>

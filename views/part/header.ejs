@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOGS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function addphoto() {
+            var link = prompt("Please enter link of image:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "<img src='" + link + "'>";
+        }
+
+        // function avideo() {
+        //var link = prompt("Please enter link of video:");
+        //var x = document.getElementById("bbody").value;
+        //document.getElementById("bbody").value = x + "\n" + '<video width="320" height="240" controls> <source src="' + link + '"  type="video/mp4"></video>';
+        // } 
+
+
+        function solid() {
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "**solid text here**";
+
+        }
+
+        function heading1() {
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "# ";
+        }
+
+        function heading2() {
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "## ";
+        }
+
+        function heading3() {
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "### ";
+        }
+
+        function heading4() {
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "\n" + "#### ";
+        }
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container ">
+        <div>
+            <div class="btn btn-secondary"><a href="/">allblogs</a></div>
+            <div class="btn btn-secondary"><a href="/myblogs">MYblogs</a></div>
+            <div class="btn btn-secondary"><a href="/addblog">Addblog</a></div>
+
+
+        </div>

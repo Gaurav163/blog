@@ -1,0 +1,33 @@
+<%- include('part/header'); %>
+
+    <% if (message!=="ok")  { %>
+        <div class="btn btn-warning">
+            <%= message %>
+        </div>
+        <% } %>
+
+
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="uname">Userame :</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="uname" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name :</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password :</label>
+                    <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required minlength=8>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="mce-text-center col-md">or</div>
+                <button class="btn btn-secondary"><a href="/login" style="color:white"> Log in </a>  </button>
+            </form>
+
+            <%- include('part/footer'); %>

@@ -1,0 +1,44 @@
+<%- include('part/header') %>
+
+
+
+    <h1>Start new Blog</h1>
+
+
+    <div class="row">
+
+
+
+        <form action="/addblog" method="POST">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input class="form-control" type="text" name="title" placeholder="Title" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="user">By:</label>
+                <input class="form-control" type="text" name="username" placeholder="<%= name %>" id="user" disabled>
+            </div>
+            <div class="border" style="padding:10px">
+                <div style="padding:10px">
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="abb image" onclick="addphoto()">📷</div>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="abb solid text" onclick="solid()">solid</div>
+                    <!-- <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="abb video" onclick="avideo()">🎞</div> -->
+
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Heading 1" onclick="heading1()"><img src="https://lh3.googleusercontent.com/LfCACJQ815PDBzhjDBVjgqu_-Aw1SPWk7mVKtLfUBesdBad_iokg6sxy7R8e0wI1drtwrtQwOg0pZVYg6X8XbXPRe-fXMb82L1elfmY9RMgQQUTZsyRCtM7bg0LkyEvA7-kyXu6e_QEnw_SO-88YzSO7SMWLcOPviOzgJv9hlD9vp9rDrCC6ojCE7UYX50wG9EMq1PlXHVU4abcMCLVQSoXP6ivbdlQ_jgwyyOOtqtTwI_PIbJs4_69sB1xOGwY5u4haTNWf20xJrR9Q12mA-tB0K9EDUPJlpM-HYoWTVeqgp5EchENULXkcoWN7uykuKGULwenFGcJ46AMtovUm7PE3T7cmIPDJPqwSCgVlh72IfNjq6lxaQdb-jpr4FoiYglAVIB1Gi1RW6qnn9fikPzzVsJZhsjfC8KI6SadeQSuLknwJy0EYba8nXG8_dYBqOyi5hS7aXm70KF3t-TZm12n8XREGzhQ8esL6fUnWKZKpMTEUlcUZXRVHPPHSF8t-wwbGdSFOp1ZjXFyZyd_21RaOTp_dls5oz6ggzmJzWhIhB4BLCZsSc0_CkpIZscMTIc12XphdYlCi8JcQ0CwB__P1MH_3HWYDq6NjSEou4xit77DPYsQRIF1jiaLPRY3-tt9cgx_5-AO7bn0yln7C82Ac_cgCL7N5cEvvhyi53yOO2KpRs8RZ-WfQ0ae-=w25-h26-no?authuser=0"></div>
+
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Heading 2" onclick="heading2()"><img src="https://lh3.googleusercontent.com/wVF_XMzSRKj58vgmx1Y67utplnkShPwe1CbVN3ek75ZQ1tVMnU5W6JfRGHC1W48J-k-G_8HoMpZaLG1jo97LjFQT5Pv3-nNuuuelSyjaPFmCFgnnNf8P_dTSMxBwpwiznzY8Km6aEaxDFdKq1pVsLyrk9hwnAEfzRK94oZhIMSk9Pyga5g87aS-ZiSxL3L5x7tC1Pfh45MsI9CY0rAPQuIem6f3nY0j51aH8s68r1Ku7uwy7veAkU0AKOkjq-kIA5oCpfL7Dh4NBy8WUnO-L2BAY0Wqrj5xTkT2gLgr8wKT_Fvj0JZYT-ET5mo2TLaXTtoJ_yaIiG9dEJJW0XV2wa2oXOWTCKT7EJvzW3W-BnsjAe9oNDvcVXA6YPNJVutPhrkgzbnllHqSP5e-iUfBVawXfknPAEu2v6_IxhAB_XuosZa2hoN8orUZpajWXcu6No95n-ScLEYBrZQtTODEMhJm4PGx5zezZvRTWQBaUdtpVm5wl7ZokDUsemvLmXVm_iCIOuZcIMBya7m8TJFwiMjhevm5auynWsQ7V95VtmOuuSifQKHsMUMtVpG7YjPqiHyf0A_8SN_am9QBZbVf0c67UDL62RDdMKt9qZIMq3cQHhJx_4lWcpeJb7UpDaI7fyMnEqNdtoS8bFpbX9WBJ9bQCCCBlGO-nmy0UF9Yj1zaAu8GVrWo6BRxG6SFf=w30-h23-no?authuser=0"></div>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Heading 3" onclick="heading3()"><img src="https://lh3.googleusercontent.com/Sj19tguCtt2Ni2Muh-2iwtknnuR6Z9AkM8f5GjkIRDF8WXzPANFA7yKczcKvmkRji7dK7cMQw06dft0wSQQM_sqxqtzIwiotQGzXZC1rFLs_TXoD8ziw28hvztrAVtwj7I_3tsaMc6IeyB4_yNio2FVt84MPanNyGIXsLXtpzOsZmPEPzgEmpU_UC1PFIVZOLapn27pK0LTD2_OTb5emLsPfG_BooUvklF0rHnXcKYF_ImgiCEibGd2hBZO7hFW5NBwLDfJBUq63eFLz8EJlgjuzIEI-E2lAhpQNU4cvw1h-AZjSjpdUh8gaY1fkfmaDiTUly_GtNwjyX55iMmadHJwE-1-FpKrXKGMjTSNCe59_52Kc9C7zXCudljqd2LC1fVJQwErExYK0py8C71jYzq14VkAF7YKpzL3w3PhH8tYBj6e2dW6bOLKfbfzQRSmEA9CFWs6gzuxjRUf1p3OZv3Lw-L3hjitLDsKKpL-g3-WnFM7Y6-15RonSGEyh2jjRtpM11zxNdDWyoQqwuar_dzQp79PUDN2KmfWDa_Fi_9gS-wjedKYXSI5ezHH4MKkjks7oemkUIxx46c0iTkzaTKXJjPFRHZ4K5bazaJJRc3Zk7Y8iJCZiYJJHwy3z0V_4BrsYYFPIkiCFKe8P4X_69dDY09yXRiHlK_muhqYLby3Cpcf43x7SlOyPeEu5=w27-h21-no?authuser=0"></div>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="Heading 4" onclick="heading4()"><img src="https://lh3.googleusercontent.com/CTxd24GprnRnzBR1jGTVXe408oQS1RmwbCnqUFe9_nafk_bIE7dl-OPozwhg4r_MexuiqIZC-4PJt1iyfVr1LqcO1lSuycPgIi4oJcmFf1xFYjQ_Nrg6ijtOru6lVCjRZPgknBqS5bvoNOxApMzF3t7iVCHcJMEJtlHKp0gLtPYNMjhspr13gageue8UrAb4c7vm4gtoVhAImTJhHvPVrwIm4f9KVTZ6J5cQbsNz3nC9iLL8QqVs9MdaHa1W5uFTI4eURkd_XqPhZa7RO2PRulaLYzIvdr2GPX8vE8QxKLVfkMQ_bDa2sbu_IRuThUS92f0G7iu4H1TrWydiHaeIyUVCYpvSDeUkEZMiiWI2WP1lE8To_QMfV_kXUmp_jeHAcHTmpHfU3h_TkWEWSlWCxucS66YbQFkRyhAYjTz60b7VIYNCu-ruVITrjcDWCsTm2eF6R0xGia0Yza4VDcS9E6IlqzymRGT4MTv7KWm7oDJQQDSHlTSZ1bhBFHVtGbcf-AbLbAiW-xtLg7lfJAnSJoLuVS2im7oW7TyrnoI9Pzc2CJfGzZQqxwDpv0Ah3HhI9PMTYtB5ptpWKVzz8iJo-YCWybALCljgHDgeOoSCjpSoIlPZ1KTYM0LzzUIiqAMzr-NB8Zgwy4xN4mDMuy9IiFo18ozXMA3wWkhwf6Sl5VNdwEJHPMsdy6zOE2e4=w35-h23-no?authuser=0"></div>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div>
+
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="10" cols="100" name="body" id="bbody" placeholder="Main Body For Blog"></textarea></div>
+                <a class="btn btn-secondary" href="/"> Cancel</a>
+                <button class="btn btn-primary" type="submit"> Submit</button>
+            </div>
+        </form>
+    </div>
+
+    </div>
+    <%- include('part/footer'); %>
