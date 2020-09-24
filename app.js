@@ -20,7 +20,7 @@ var emailconname = "iiitbloog@gmail.com";
 var emailconpass = "Gaurav@63";
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/blog", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://Gaurav:Gaurav@63@cluster0.xar7x.mongodb.net/blog?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
