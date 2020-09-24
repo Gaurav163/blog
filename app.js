@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -8,6 +6,7 @@ const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const cookieParser = require('cookie-parser');
 
 var marked = require("marked");
 var createDom = require("dompurify");
@@ -18,9 +17,15 @@ var emailconname = "iiitbloog@gmail.com";
 var emailconpass = "Gaurav@63";
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://Gaurav:Gaurav@63@cluster0.xar7x.mongodb.net/blog", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
 
+mongoose.Promise = global.Promise;
 
+const uri = "mongodb+srv://Gaurav:Gaurav@63@cluster0.xar7x.mongodb.net/blog";
+mongoose.connect(uri, () => console.log("App Db success"))
+    .catch(err => console.log(err));
 
 
 var age = 7 * 24 * 60 * 60 * 1000;
@@ -38,8 +43,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'));
-app.use(express.cookieParser('secret'));
-app.use(express.cookieSession());
+app.use(cookieParser());
 
 
 
