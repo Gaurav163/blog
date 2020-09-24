@@ -23,7 +23,7 @@ mongoose.connect("mongodb+srv://Gaurav:Gaurav@63@cluster0.xar7x.mongodb.net/blog
 
 
 
-
+var age = 7 * 24 * 60 * 60 * 1000;
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
