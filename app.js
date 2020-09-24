@@ -222,11 +222,7 @@ app.post("/register", async(req, res) => {
 })
 
 app.get("/confirm", (req, res) => {
-  if(req.user){
-    if (req.user.verify == "confirmed") {
-        res.redirect("/");
-    }
-  }
+  
     res.render('verify');
 
 
