@@ -238,7 +238,7 @@ app.post("/confirm", async(req, res) => {
         if (err) {
             console.log(err);
 
-        } else {
+        } else (usr) {
 
             if (req.body.otp == usr[0].verify) {
                 usercon = true;
@@ -256,6 +256,13 @@ app.post("/confirm", async(req, res) => {
             }
         })
     }
+    await user.find({}, (e, b) => {
+                    if (e) {
+                        console.log(e);
+                    } else {
+                        users = b;
+                    }
+                })
     res.redirect("/");
 
 });
