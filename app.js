@@ -444,7 +444,4 @@ function checklogin(req, res, next) {
 
 
 
-port = 3000;
-app.listen(port, function() {
-    console.log("Server is Listening at http://localhost:" + port);
-});
+app.listen(process.env.PORT || 5000, () => console.log('Server started on 5000!'));
