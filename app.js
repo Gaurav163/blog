@@ -238,7 +238,7 @@ app.post("/confirm", async(req, res) => {
         if (err) {
             console.log(err);
 
-        } else (usr) {
+        } else if(usr) {
 
             if (req.body.otp == usr[0].verify) {
                 usercon = true;
