@@ -28,10 +28,13 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}))
+    cookie: {
+        maxAge: age
+    },
+    secret: 'btpsecret',
+    saveUninitialized: false,
+    resave: false
+}));
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'));
