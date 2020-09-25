@@ -106,14 +106,17 @@ app.get("/", (req, res) => {
     var name = "logedout";
     var time = parseInt(Date.now() / 60000);
     console.log(time);
+    var username;
     if (req.user) {
         name = req.user.name;
+        username = req.user.username;
     }
     blog = bloog.find({}, (e, b) => {
+
         if (e) {
             console.log(e);
         } else {
-            res.render("index", { name: name, blogs: b, time: time });
+            res.render("index", { name: name, blogs: b, time: time, username: username });
         }
     })
 
@@ -222,7 +225,7 @@ app.post("/register", async(req, res) => {
 })
 
 app.get("/confirm", (req, res) => {
-  
+
     res.render('verify');
 
 
@@ -238,7 +241,7 @@ app.post("/confirm", async(req, res) => {
         if (err) {
             console.log(err);
 
-        } else if(usr) {
+        } else if (usr) {
 
             if (req.body.otp == usr[0].verify) {
                 usercon = true;
@@ -257,12 +260,12 @@ app.post("/confirm", async(req, res) => {
         })
     }
     await user.find({}, (e, b) => {
-                    if (e) {
-                        console.log(e);
-                    } else {
-                        users = b;
-                    }
-                })
+        if (e) {
+            console.log(e);
+        } else {
+            users = b;
+        }
+    })
     res.redirect("/");
 
 });
@@ -371,6 +374,17 @@ app.post("/edit/:y", async(req, res) => {
 
 
 app.post("/addcomment/:id", async(req, res) => {
+
+
+    if (req.user === undefined) {
+        res.redirect('/login');
+        return;
+    }
+
+    if (req.user.verify != "confirmed") {
+        res.redirect("/confirm");
+    }
+
     if(req.user){
     if (req.user.verify != "confirmed") {
         res.redirect("/confirm");

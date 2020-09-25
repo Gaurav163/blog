@@ -47,37 +47,28 @@
             overflow-y: scroll;
         }
         
-         ::-webkit-scrollbar {
-            width: 7px;
-        }
-        
-         ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey;
-        }
-        
-         ::-webkit-scrollbar-thumb {
-            background: #888;
-            transition: all 0.2s;
-        }
-        
-         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        
         .logout {
             transition: all 0.2s;
-            border: 0px;
+            border-radius: 5px;
+            border: 2px solid black;
         }
         
         .logout:hover {
             background: grey;
+            border: 2px solid grey;
             color: white;
             text-decoration: bold;
             border-radius: 5px;
         }
+        
+        .hh {
+            overflow: hidden;
+            margin: 10px auto;
+            width: 85%;
+        }
     </style>
 
-    <div class="container jumbotron " style="margin :20px;width:100%">
+    <div class="jumbotron hh">
         <div class="float-left">
             <% if(name !=="logedout") {%>
                 Welcome to IIITP-BLOG,
@@ -90,7 +81,8 @@
         <div class="float-right ">
             <% if(name !=="logedout") {%>
                 <div class="float-left ">
-                    <%= name %> !</div>
+                    <%= username %> !
+                </div>
                 <div class="float-right ">
                     <form action="/logout?_method=DELETE" method="POST">
                         <button type="submit" class="logout">LOG OUT</button>
@@ -107,15 +99,15 @@
         </div>
     </div>
 
-    <div class="btn btn-warning">
-        <a href="/addblog"> Add blog</a>
-    </div>
-
-
     <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
         <div class="container blogc" style="margin: 50px auto;padding:20px">
-
-
+            <div class="float-right">
+                <% if(username === blogs[i]["username"]) {%>
+                    <div class="btn btn-warning">
+                        <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
+                    </div>
+                    <% } %>
+            </div>
             <h1>
                 <%= blogs[i]["title"] %>
             </h1>
@@ -132,6 +124,7 @@
                     <%- blogs[i].sbody %>
                 </div>
             </div>
+
             <div class="btn btn-warning">
                 <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
             </div>
