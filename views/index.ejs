@@ -81,7 +81,7 @@
         <div class="float-right ">
             <% if(name !=="logedout") {%>
                 <div class="float-left ">
-                    <%= name %> !
+                    <%= username %> !
                 </div>
                 <div class="float-right ">
                     <form action="/logout?_method=DELETE" method="POST">
@@ -99,12 +99,10 @@
         </div>
     </div>
 
-
-
     <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
         <div class="container blogc" style="margin: 50px auto;padding:20px">
             <div class="float-right">
-                <% if(usern === blogs[i]["username"]) {%>
+                <% if(username === blogs[i]["username"]) {%>
                     <div class="btn btn-warning">
                         <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
                     </div>

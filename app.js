@@ -116,7 +116,7 @@ app.get("/", (req, res) => {
         if (e) {
             console.log(e);
         } else {
-            res.render("index", { name: name, blogs: b, time: time, usern: username });
+            res.render("index", { name: name, blogs: b, time: time, username: username });
         }
     })
 
