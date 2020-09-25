@@ -10,11 +10,81 @@
             max-width: 100%;
             max-height: 100vh;
         }
+        
+        div a {
+            color: white;
+        }
+        
+        .auth {
+            background: rgb(182, 178, 178);
+            padding: 5px;
+            padding-right: 8px;
+            padding-left: 8px;
+            border-radius: 5px;
+            color: rgb(94, 94, 94);
+            transition: all 0.25s;
+        }
+        
+        .auth:hover {
+            box-shadow: 0px 0px 7px grey;
+            color: black;
+        }
+        
+        .blogc {
+            border: 0px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 7px grey;
+            transition: all 0.3s;
+        }
+        
+        .blogc:hover {
+            box-shadow: 0px 0px 10px black;
+        }
+        
+        .content {
+            max-height: 500px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            transition: all 0.2s;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .logout {
+            transition: all 0.2s;
+            border: 0px;
+        }
+        
+        .logout:hover {
+            background: grey;
+            color: white;
+            text-decoration: bold;
+            border-radius: 5px;
+        }
     </style>
 
     <div class="container jumbotron " style="margin :20px;width:100%">
         <div class="float-left">
-            <h2>Welome !</h2>
+            <% if(name !=="logedout") {%>
+                Welcome to IIITP-BLOG,
+                <%= name %>
+                    <%} else{ %>
+                        IIITP - BLOG
+                        <% } %>
 
         </div>
         <div class="float-right ">
@@ -23,15 +93,15 @@
                     <%= name %> !</div>
                 <div class="float-right ">
                     <form action="/logout?_method=DELETE" method="POST">
-                        <button type="submit">LOG OUT</button>
+                        <button class="logout" type="submit">LOG OUT</button>
 
                     </form>
                 </div>
                 <%} else{ %>
 
-                    <a href="/login"> LOG IN</a>
+                    <a class="auth" href="/login"> LOG IN</a>
                     <a> || </a>
-                    <a href="/register"> Register</a>
+                    <a class="auth" href="/register"> Register</a>
                     <% } %>
 
         </div>
@@ -43,7 +113,7 @@
 
 
     <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
-        <div class="container   " style="margin: 50px auto;border:blue solid 5px;padding:20px">
+        <div class="container blogc" style="margin: 50px auto;padding:20px">
 
 
             <h1>
