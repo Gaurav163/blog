@@ -375,6 +375,7 @@ app.post("/edit/:y", async(req, res) => {
 
 app.post("/addcomment/:id", async(req, res) => {
 
+
     if (req.user === undefined) {
         res.redirect('/login');
         return;
@@ -384,6 +385,11 @@ app.post("/addcomment/:id", async(req, res) => {
         res.redirect("/confirm");
     }
 
+    if(req.user){
+    if (req.user.verify != "confirmed") {
+        res.redirect("/confirm");
+    }
+    }
     var sbody = domPurify.sanitize(marked(req.body.body));
     if (req.user) {
         await bloog.findOneAndUpdate({ mid: req.params.id }, {
