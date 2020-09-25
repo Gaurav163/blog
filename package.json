@@ -5,11 +5,11 @@
     "main": "app.js",
     "scripts": {
         "start": "nodemon app.js"
-    },    
+    },
     "engines": {
         "node": "10.16.0"
     },
-   "author": "",
+    "author": "",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.0",

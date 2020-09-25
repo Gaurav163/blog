@@ -10,11 +10,69 @@
             max-width: 100%;
             max-height: 100vh;
         }
+        
+        div a {
+            color: white;
+        }
+        
+        .auth {
+            background: rgb(182, 178, 178);
+            padding: 5px;
+            padding-right: 8px;
+            padding-left: 8px;
+            border-radius: 5px;
+            color: rgb(94, 94, 94);
+            transition: all 0.25s;
+        }
+        
+        .auth:hover {
+            box-shadow: 0px 0px 7px grey;
+            color: black;
+        }
+        
+        .blogc {
+            border: 0px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 7px grey;
+            transition: all 0.3s;
+        }
+        
+        .blogc:hover {
+            box-shadow: 0px 0px 10px black;
+        }
+        
+        .content {
+            max-height: 500px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            transition: all 0.2s;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 
     <div class="container jumbotron " style="margin :20px;width:100%">
         <div class="float-left">
-            <h2>Welome !</h2>
+            <% if(name !=="logedout") {%>
+                Welcome to IIITP-BLOG,
+                <%= name %>
+                    <%} else{ %>
+                        IIITP - BLOG
+                        <% } %>
 
         </div>
         <div class="float-right ">
@@ -29,9 +87,9 @@
                 </div>
                 <%} else{ %>
 
-                    <a href="/login"> LOG IN</a>
+                    <a class="auth" href="/login"> LOG IN</a>
                     <a> || </a>
-                    <a href="/register"> Register</a>
+                    <a class="auth" href="/register"> Register</a>
                     <% } %>
 
         </div>
@@ -43,22 +101,24 @@
 
 
     <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
-        <div class="container   " style="margin: 50px auto;border:blue solid 5px;padding:20px">
+        <div class="container blogc" style="margin: 50px auto;padding:20px">
 
 
             <h1>
                 <%= blogs[i]["title"] %>
             </h1>
+            <div class="content">
+                <div>
+                    By :
+                    <%= blogs[i]["username"] %>
 
-            <div> By :
-                <%= blogs[i]["username"] %>
-
-                    ,
-                    <% var x= "just now" ;if( time - blogs[i].did >= 525600){ x= (parseInt((time - blogs[i].did )/ 525600))+" years ago"; } else if( time - blogs[i].did >=43200){ x= (parseInt((time - blogs[i].did )/ 43200))+" months ago" } else if( time - blogs[i].did >=10800){ x= (parseInt((time - blogs[i].did )/ 10800))+" weeks ago" }else if( time - blogs[i].did >=1440){ x= (parseInt((time - blogs[i].did )/ 1440))+" days ago" } else if( time - blogs[i].did >=60){ x= (parseInt((time - blogs[i].did )/ 60))+" hours ago" }else if( time - blogs[i].did >=0){ x= (parseInt((time - blogs[i].did )))+" min ago" }   %>
-                        <%= x %>
-            </div>
-            <div style="border-left: 10px grey solid;padding-left:5px" id="sbody">
-                <%- blogs[i].sbody %>
+                        ,
+                        <% var x= "just now" ;if( time - blogs[i].did >= 525600){ x= (parseInt((time - blogs[i].did )/ 525600))+" years ago"; } else if( time - blogs[i].did >=43200){ x= (parseInt((time - blogs[i].did )/ 43200))+" months ago" } else if( time - blogs[i].did >=10800){ x= (parseInt((time - blogs[i].did )/ 10800))+" weeks ago" }else if( time - blogs[i].did >=1440){ x= (parseInt((time - blogs[i].did )/ 1440))+" days ago" } else if( time - blogs[i].did >=60){ x= (parseInt((time - blogs[i].did )/ 60))+" hours ago" }else if( time - blogs[i].did >=0){ x= (parseInt((time - blogs[i].did )))+" min ago" }   %>
+                            <%= x %>
+                </div>
+                <div style="border-left: 10px grey solid;padding-left:5px" id="sbody">
+                    <%- blogs[i].sbody %>
+                </div>
             </div>
             <div class="btn btn-warning">
                 <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
