@@ -103,8 +103,13 @@
 
     <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
         <div class="container blogc" style="margin: 50px auto;padding:20px">
-
-
+            <div class="float-right">
+                <% if(usern === blogs[i]["username"]) {%>
+                    <div class="btn btn-warning">
+                        <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
+                    </div>
+                    <% } %>
+            </div>
             <h1>
                 <%= blogs[i]["title"] %>
             </h1>
@@ -121,16 +126,12 @@
                     <%- blogs[i].sbody %>
                 </div>
             </div>
-            <% if(usern === blogs[i]["username"]) {%>
-                <div class="btn btn-warning">
-                    <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
-                </div>
-                <% } %>
-                    <div class="btn btn-warning">
-                        <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
-                    </div>
-                    <!-- <h2>Comments</h2> -->
-                    <!-- <div>
+
+            <div class="btn btn-warning">
+                <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
+            </div>
+            <!-- <h2>Comments</h2> -->
+            <!-- <div>
                 <%  for(var j=0;j < blogs[i]["comments"].length ;j++) { %>
                     <div style="border:solid; margin:10px 10px 10px 50px ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">
                         <div>
@@ -149,7 +150,7 @@
 
 
 
-                    <!-- <form action="/addcomment/<%=blogs[i]['mid']%>" method="POST">
+            <!-- <form action="/addcomment/<%=blogs[i]['mid']%>" method="POST">
                 <textarea type="text" placeholder="Comment" name="body" rows="4" cols="50" required></textarea>
                 <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div>
                 <button type="submit" class="btn btn-primary"> POST</button>
