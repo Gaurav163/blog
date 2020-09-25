@@ -63,6 +63,18 @@
          ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        
+        .logout {
+            transition: all 0.2s;
+            border: 0px;
+        }
+        
+        .logout:hover {
+            background: grey;
+            color: white;
+            text-decoration: bold;
+            border-radius: 5px;
+        }
     </style>
 
     <div class="container jumbotron " style="margin :20px;width:100%">
@@ -81,7 +93,7 @@
                     <%= name %> !</div>
                 <div class="float-right ">
                     <form action="/logout?_method=DELETE" method="POST">
-                        <button type="submit">LOG OUT</button>
+                        <button type="submit" class="logout">LOG OUT</button>
 
                     </form>
                 </div>
