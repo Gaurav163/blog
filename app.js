@@ -371,8 +371,10 @@ app.post("/edit/:y", async(req, res) => {
 
 
 app.post("/addcomment/:id", async(req, res) => {
+    if(req.user){
     if (req.user.verify != "confirmed") {
         res.redirect("/confirm");
+    }
     }
     var sbody = domPurify.sanitize(marked(req.body.body));
     if (req.user) {
