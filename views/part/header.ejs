@@ -57,12 +57,34 @@
         div a:hover {
             text-decoration: none;
         }
+        
+        body {
+            width: 85%;
+            margin: 20px auto;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            transition: all 0.2s;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="container ">
+    <div class="container">
         <div>
             <div class="btn btn-secondary"><a style="color:white;" href="/">allblogs</a></div>
             <div class="btn btn-secondary"><a style="color:white;" href="/myblogs">MYblogs</a></div>
@@ -70,3 +92,6 @@
 
 
         </div>
+
+
+    </div>
