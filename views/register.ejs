@@ -25,11 +25,51 @@
 
                     <div class="form-group">
                         <label for="password">Password :</label>
-                        <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required minlength=8>
+                        <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required minlength=8 onkeyup="funm1()">
                     </div>
+
+                    <div class="form-group">
+
+                        <input type="password" class="form-control" placeholder="Re enter password" id="password1" name="password1" onkeyup="funm()">
+                    </div>
+                    <div id="pm"> </div>
+                    <div id="pmatch"> </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Register</button>
                     <div class="mce-text-center col-md">or</div>
                     <button class="btn btn-secondary"><a href="/login" style="color:white"> Log in </a>  </button>
+                    <button class="btn btn-secondary"><a href="/confirm" style="color:white">Verify</a>  </button>
                 </form>
     </div>
+    <script>
+        function funm() {
+            var x = document.getElementById("password").value;
+            var y = document.getElementById("password1").value;
+            document.getElementById("pm").innerHTML = "";
+            if (x == y) {
+                document.getElementById("pmatch").innerHTML = "password matched";
+                document.getElementById("pmatch").style.color = "green";
+            } else {
+                document.getElementById("pmatch").innerHTML = "password not matched";
+                document.getElementById("pmatch").style.color = "red";
+            }
+
+        }
+
+        function funm1() {
+            var x = document.getElementById("password").value;
+            var y = document.getElementById("password1").value;
+            if (x.length < 7) {
+                document.getElementById("pm").innerHTML = "weak password";
+                document.getElementById("pm").style.color = "red";
+            } else if (x.length < 11) {
+                document.getElementById("pm").innerHTML = "Good password";
+                document.getElementById("pm").style.color = "blue";
+            } else {
+                document.getElementById("pm").innerHTML = "strong password";
+                document.getElementById("pm").style.color = "green";
+            }
+
+        }
+    </script>
     <%- include('part/footer'); %>

@@ -131,7 +131,6 @@ app.get("/register", (req, res) => {
     if (req.user) res.redirect("/");
     res.render("register", { message: mess });
     mess = "ok";
-    console.log(mess);
 })
 
 app.post("/login", passport.authenticate('local', {
@@ -151,7 +150,7 @@ app.post("/register", async(req, res) => {
             var x = 0;
 
             for (var i = 0; i < users.length; i++) {
-                console.log(i);
+
                 if (users[i].username === req.body.username) {
                     mess = "Username Already Exist";
                     x = 1;
@@ -161,6 +160,9 @@ app.post("/register", async(req, res) => {
                     x = 1;
                     res.redirect("/register");
 
+                } else if (req.body.password != req.body.password1) {
+                    x = 1;
+                    mess = "password not matched";
                 }
             }
             var verifykey = (parseInt(Date.now() % 1000000).toString());
@@ -226,7 +228,7 @@ app.post("/register", async(req, res) => {
 
 app.get("/confirm", (req, res) => {
 
-    res.render('verify');
+    res.render('verify', { mess: "ok" });
 
 
 });
@@ -236,21 +238,23 @@ app.post("/confirm", async(req, res) => {
     console.log(req.body.otp);
     var usercon = false;
 
-    await user.find({ email: req.body.email }, (err, usr) => {
-        console.log(usr);
-        if (err) {
-            console.log(err);
+    var x = "ok";
+    for (var i = 0; i < users.length; i++) {
+        console.log(i);
+        if (users[i].email === req.body.email) {
+            x = users[i].verify;
 
-        } else if (usr) {
-
-            if (req.body.otp == usr[0].verify) {
-                usercon = true;
-            } else {
-                console.log("wrong otp");
-            }
         }
-    })
-    if (usercon == true) {
+    }
+    if (x == "ok") {
+        res.render('verify', { mess: "user not registered" });
+    } else if (x == "confirmed") {
+        res.render('verify', { mess: "user already verified" });
+    } else if (x != req.body.otp) {
+        res.render('verify', { mess: "OTP not matched" });
+    }
+
+    if (x == req.body.otp) {
         await user.updateOne({ email: req.body.email }, { $set: { verify: 'confirmed' } }, (err, res) => {
             if (err) {
                 console.log(err);
