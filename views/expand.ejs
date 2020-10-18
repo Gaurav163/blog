@@ -14,6 +14,25 @@
         .jumbotron {
             width: 100%;
         }
+        
+        p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        h6 {
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+            color: rgb(88, 6, 31);
+        }
+        
+        .comm {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
     </style>
     <br>
     <div class="container">
@@ -62,10 +81,10 @@
             <div style="border-left: 10px grey solid;padding-left:5px" id="sbody">
                 <%- blog.sbody %>
             </div>
-            <h3>Comments</h3>
+            <h3>Comments: </h3>
             <div id="comm">
                 <%  for(var j=0;j < blog["comments"].length ;j++) { %>
-                    <div style="border:solid grey; margin:10px 10px 10px 50px ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;" class="rounded">
+                    <div style="border:solid grey; margin:5px 5px 5px 50px ;padding: 5px 5px; max-height:200px;overflow-y:scroll;" class="rounded">
                         <div>
                             <h6>
                                 <%=blog["comments"][j]["username"]%> ,
@@ -94,10 +113,10 @@
     <script>
         var fn = () => {
             var x = document.getElementById("body").value;
-            var ans = " ";
+            var ans = "";
             for (var i = 0; i < x.length; i++) {
 
-                console.log(y);
+
                 if (x[i] == "\n" || x[i] == '\r') {
                     ans += '<br>';
 
