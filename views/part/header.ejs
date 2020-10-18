@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOGS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function addphoto() {
+            var link = prompt("Please enter link of image:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "<img src='" + link + "'>";
+        }
+
+        function addlink() {
+            var link = prompt("Please enter link :");
+            var val = prompt("Please enter name for link :");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "[" + val + "](" + link + ")";
+        }
+
+        // function avideo() {
+        //var link = prompt("Please enter link of video:");
+        //var x = document.getElementById("bbody").value;
+        //document.getElementById("bbody").value = x + "\n" + '<video width="320" height="240" controls> <source src="' + link + '"  type="video/mp4"></video>';
+        // } 
+
+
+        function solid() {
+            //var x = document.getElementById("bbody").value;
+            // document.getElementById("bbody").value = x + "**solid text here**";
+            var link = prompt("Please enter solid text here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "**" + link + "**";
+
+        }
+
+        function heading1() {
+            // var x = document.getElementById("bbody").value;
+            // document.getElementById("bbody").value = x + "# ";
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " # " + link;
+        }
+
+        function heading2() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " ## " + link;
+        }
+
+        function heading3() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " ### " + link;
+        }
+
+        function heading4() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " #### " + link;
+        }
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+    <style>
+        div a:hover {
+            text-decoration: none;
+        }
+        
+        body {
+            width: 85%;
+            margin: 20px auto;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            transition: all 0.2s;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .navbar {
+            background-color: black;
+        }
+        
+        .nav-link {
+            color: white;
+            font-size: 15px;
+            margin: 0 15px;
+        }
+        
+        .nav-link:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-sm  sticky-top rounded">
+
+            <!-- Links -->
+
+            <ul class="navbar-nav">
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/">Allblogs</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/myblogs">MYblogs</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/addblog">Addblog</a>
+                </li>
+            </ul>
+
+
+        </nav>
+        <!-- <div>
+            <div class="btn btn-secondary"><a style="color:white;" href="/">allblogs</a></div>
+            <div class="btn btn-secondary"><a style="color:white;" href="/myblogs">MYblogs</a></div>
+            <div class="btn btn-secondary"><a style="color:white;" href="/addblog">Addblog</a></div>
+
+
+        </div> -->
+
+
+    </div>

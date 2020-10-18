@@ -1,0 +1,27 @@
+<%- include('part/header'); %>
+    <div class="container">
+        <h1>LOG IN</h1>
+        <% if (messages.error)  { %>
+            <div class="btn btn-warning">
+                <%= messages.error %>
+            </div>
+            <% } %>
+
+                <form action="/login" method="POST">
+
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password :</label>
+                        <input type="password" class="form-control" placeholder="Enter password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <div class="mce-text-center col-md">or</div>
+                    <button class="btn btn-secondary"><a href="/register" style="color:white">Register</a>  </button>
+
+                </form>
+    </div>
+    <%- include('part/footer'); %>
