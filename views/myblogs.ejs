@@ -7,14 +7,7 @@
         });
     </script>
     <style>
-        #edit a {
-            color: white;
-            font-weight: 600;
-        }
-        
-        #edit:hover a {
-            color: white;
-        }
+
     </style>
 
     <div>
@@ -59,32 +52,6 @@
                         <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
                     </div>
 
-                    <!-- <h2>Comments</h2>
-        <div>
-            <%  for(var j=0;j < blogs[i]["comments"].length ;j++) { %>
-                <div style="border:solid; margin:10px 10px 10px 50px ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">
-                    <div>
-                        <h4>
-                            <%=blogs[i]["comments"][j]["username"]%> ,
-                                <%  x= "just now";var y=blogs[i]["comments"][j].did ;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
-                                    <%= x %>
-                        </h4>
-                    </div>
-                    <%- blogs[i]["comments"][j]["sbody"] %>
-                </div>
-
-                <%  }   %>
-        </div>
-
-
-
-
-        <form action="/addcomment/<%=blogs[i]['mid']%>" method="POST">
-            <textarea type="text" placeholder="Comment" name="body" rows="4" cols="50" required></textarea>
-            <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div>
-            <button type="submit" class="btn btn-primary"> POST</button>
-
-        </form> -->
                 </div>
 
                 <%  }   %>

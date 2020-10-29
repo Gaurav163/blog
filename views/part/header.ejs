@@ -43,25 +43,25 @@
             // document.getElementById("bbody").value = x + "# ";
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " ### " + link;
+            document.getElementById("bbody").value = x + " ## " + link + "\n";
         }
 
         function heading2() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " #### " + link;
+            document.getElementById("bbody").value = x + " ### " + link + "\n";
         }
 
         function heading3() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " ##### " + link;
+            document.getElementById("bbody").value = x + " #### " + link + "\n";
         }
 
         function heading4() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " ###### " + link;
+            document.getElementById("bbody").value = x + " ##### " + link + "\n";
         }
         $(document).ready(function() {
             $('[data-toggle="popover"]').popover();
@@ -69,6 +69,15 @@
     </script>
 
     <style>
+        #edit a {
+            color: white;
+            font-weight: 600;
+        }
+        
+        #edit:hover a {
+            color: white;
+        }
+        
         .form-control {
             max-width: 500px;
         }
@@ -185,7 +194,7 @@
         }
         
         .content {
-            max-height: 500px;
+            max-height: 200vh;
             overflow: hidden;
             overflow-y: scroll;
         }
@@ -273,13 +282,13 @@
                     <a class="nav-link rounded" href="/"> ALL </a>
                 </li>
                 <li class="nav-item rounded">
-                    <a class="nav-link rounded" href="/announcement/1">Announcements</a>
+                    <a class="nav-link rounded" href="/announcement">Announcements</a>
                 </li>
                 <li class="nav-item rounded">
-                    <a class="nav-link rounded" href="/discussion/1">Discussions</a>
+                    <a class="nav-link rounded" href="/discussion">Discussions</a>
                 </li>
                 <li class="nav-item rounded">
-                    <a class="nav-link rounded" href="/resource/1">Resourcess</a>
+                    <a class="nav-link rounded" href="/resource">Resourcess</a>
                 </li>
             </ul>
 

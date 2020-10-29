@@ -6,7 +6,7 @@
 <script>
     var username = document.getElementById("supername").value;
     var hhp = document.getElementById("supernav").innerHTML;
-    var loggegin = '<li class="nav-item rounded">        <a class="nav-link rounded" href="/myblogs">My Blogs</a>    </li>     <li class="nav-item rounded">        <a class="nav-link rounded" href="/addblog">New Blog</a>    </li> <form action="/logout?_method=DELETE" method="POST">        <button class="btn btn-dark my-2 my-sm-0 logout" type="submit">Logout</button>   </form>';
+    var loggegin = '<li class="nav-item rounded">        <a class="nav-link rounded" href="/myblogs/1">My Blogs</a>    </li>     <li class="nav-item rounded">        <a class="nav-link rounded" href="/addblog">New Blog</a>    </li> <form action="/logout?_method=DELETE" method="POST">        <button class="btn btn-dark my-2 my-sm-0 logout" type="submit">Logout</button>   </form>';
     var loggedout = '<li class="nav-item rounded">        <a class="nav-link rounded" href="/login">Sign In</a>    </li>     <li class="nav-item rounded">        <a class="nav-link rounded" href="/register">Sign Up</a>    </li>';
     if (username == "logedout") {
         document.getElementById("supernav").innerHTML = hhp + loggedout;
