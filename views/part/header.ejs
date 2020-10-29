@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOGS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function addphoto() {
+            var link = prompt("Please enter link of image:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "<img src='" + link + "'>";
+        }
+
+        function addlink() {
+            var link = prompt("Please enter link :");
+            var val = prompt("Please enter name for link :");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "[" + val + "](" + link + ")";
+        }
+
+        // function avideo() {
+        //var link = prompt("Please enter link of video:");
+        //var x = document.getElementById("bbody").value;
+        //document.getElementById("bbody").value = x + "\n" + '<video width="320" height="240" controls> <source src="' + link + '"  type="video/mp4"></video>';
+        // } 
+
+
+        function solid() {
+            //var x = document.getElementById("bbody").value;
+            // document.getElementById("bbody").value = x + "**solid text here**";
+            var link = prompt("Please enter solid text here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + "**" + link + "**";
+
+        }
+
+        function heading1() {
+            // var x = document.getElementById("bbody").value;
+            // document.getElementById("bbody").value = x + "# ";
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " # " + link;
+        }
+
+        function heading2() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " ## " + link;
+        }
+
+        function heading3() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " ### " + link;
+        }
+
+        function heading4() {
+            var link = prompt("Please enter heading here:");
+            var x = document.getElementById("bbody").value;
+            document.getElementById("bbody").value = x + " #### " + link;
+        }
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+    <style>
+        .form-control {
+            max-width:500px;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            transition: all 0.2s;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .messageerr {
+            width: 100%;
+            background-color: rgb(255, 199, 197);
+            padding: 10px 50px;
+            margin-bottom: 10px;
+        }
+        
+        .messagecon {
+            width: 100%;
+            background-color: rgb(163, 240, 195);
+            padding: 10px 50px;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            font-size: 14px;
+            font-weight: 599;
+            width: 100%;
+            padding: 10px;
+            background-color: #343a40!important;
+            color: #afafaf;
+            bottom: 0;
+            position: fixed;
+            z-index: 9999;
+            text-align: center;
+        }
+        
+        .username {
+            color: rgb(6, 212, 33);
+            font-weight: 600;
+            font-size: medium;
+        }
+        
+        .usernamec {
+            color: rgb(199, 0, 218);
+            font-weight: 600;
+            font-size: medium;
+        }
+        
+        a.nav-link {
+            position: relative;
+        }
+        
+        a.nav-link:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #fff;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.2s ease-in-out;
+        }
+        
+        a.nav-link:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        
+        img {
+            max-width: 80%;
+            max-height: 80vh;
+            padding: 10px;
+        }
+        
+        #sbody {
+            max-width: 100%;
+            max-height: 100vh;
+            padding: 10px;
+        }
+        
+        .jumbotron {
+            width: 100%;
+        }
+        
+        .blogc {
+            border: 0px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 7px grey;
+            transition: all 0.3s;
+        }
+        
+        .blogc:hover {
+            box-shadow: 0px 0px 10px black;
+        }
+        
+        .logout {
+            transition: all 0.2s;
+            color: #afafaf;
+            border: 0px;
+        }
+        
+        .content {
+            max-height: 500px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        
+        .hh {
+            overflow: hidden;
+            margin: 10px auto;
+            width: 100%;
+            font-size: 30px;
+            font-weight: 600
+        }
+        
+        p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .comm {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .auth {
+            background: #eee;
+            padding: 5px;
+            padding-right: 8px;
+            padding-left: 8px;
+            border-radius: 5px;
+            color: rgb(94, 94, 94);
+            transition: all 0.25s;
+        }
+        
+        .auth:hover {
+            box-shadow: 0px 0px 7px grey;
+            color: black;
+            background: white;
+        }
+        
+        .btn a:hover {
+            color: white;
+        }
+        
+        .btn:hover a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        div.a {
+            color: black;
+            font-weight: 600;
+        }
+        
+        .btn a {
+            color: black;
+            font-weight: 600;
+        }
+        
+        .byuser {
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://contest-iiitp2.centralindia.azurecontainer.io:5000/">BiT Legion</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarColor01">
+
+            <ul class="navbar-nav" id="supernav">
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/">Blogs</a>
+                </li>
+            </ul>
+
+
+
+        </div>
+    </nav>
+    <div>
+        <% if (messages.error)  { %>
+            <div class="messageerr rounded">
+
+                <h3>
+                    <%= messages.error %>
+                </h3>
+            </div>
+            <% } %>
+    </div>
+    <div>
+        <% if (messages.confirm)  { %>
+            <div class="messagecon rounded">
+
+                <h3>
+                    <%= messages.confirm %>
+                </h3>
+            </div>
+            <% } %>
+    </div>
+    <div class="container" style="box-shadow: 0px 0px 7px grey;padding:2%;margin-top:10px;margin-bottom:10px">

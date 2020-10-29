@@ -1,0 +1,19 @@
+</div>
+<div style="height:100px"></div>
+<div class="footer">
+    Copyright &#169; IIIT Pune 2020-2030<br /> A Project by <span style="color:white;font-size: 15px;">Sarthak Gupta</span> , <span style="color:white;font-size: 15px;">Piyush Gupta</span> and <span style="color:white;font-size: 15px;">Gaurav Lathwal</span>
+</div>
+<script>
+    var username = document.getElementById("supername").value;
+    var hhp = document.getElementById("supernav").innerHTML;
+    var loggegin = '<li class="nav-item rounded">        <a class="nav-link rounded" href="/myblogs">My Blogs</a>    </li>     <li class="nav-item rounded">        <a class="nav-link rounded" href="/addblog">New Blog</a>    </li> <form action="/logout?_method=DELETE" method="POST">        <button class="btn btn-dark my-2 my-sm-0 logout" type="submit">Logout</button>   </form>';
+    var loggedout = '<li class="nav-item rounded">        <a class="nav-link rounded" href="/login">Sign In</a>    </li>     <li class="nav-item rounded">        <a class="nav-link rounded" href="/register">Sign Up</a>    </li>';
+    if (username == "logedout") {
+        document.getElementById("supernav").innerHTML = hhp + loggedout;
+    } else {
+        document.getElementById("supernav").innerHTML = hhp + loggegin;
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!-- <h1>Welcome !</h1> -->
+<%- include('part/header') %>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+    <style>
+        h6 {
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+            color: rgb(88, 6, 31);
+        }
+    </style>
+    <br>
+    <div>
+        <div class="jumbotron hh" style="width:100%">
+            <div class="float-left" style="font-size: 30px;font-weight:600">
+                <% if(name !=="logedout") {%>
+                    Welcome to IIITP-BLOG,
+                    <%= name %>
+                        <%} else{ %>
+                            IIITP - BLOG
+                            <% } %>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="rounded" style="margin: 50px auto;border:grey solid 5px;padding:20px">
+
+
+            <h1>
+                <%= blog["title"] %>
+            </h1>
+
+            <div> By :
+                <span class="username">  <%= blog["username"] %></span> ,
+                <% var x= "just now" ;var y=blog.did;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
+                    <%= x %>
+            </div>
+
+            <div style="padding-left:5px;border-bottom:grey 5px solid" id="sbody">
+                <%- blog.sbody %>
+            </div>
+            <br>
+            <h3>Comments: </h3>
+            <div id="comm">
+                <%  for(var j=0;j < blog["comments"].length ;j++) { %>
+                    <div id='<%="/deletecomment/"+blog["mid"]+"/"+blog["comments"][j]["mid"] %>' style="border:solid grey; margin:5px 5px 5px 50px ;padding: 5px 5px; max-height:200px;overflow-y:scroll;" class="rounded">
+                        <div>
+                            <h6>
+                                <span class="usernamec"> <%=blog["comments"][j]["username"]%> </span>,
+                                <%  x= "just now"; y=blog["comments"][j].did ;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
+                                    <%= x %>
+                            </h6>
+                            <div class="float-right">
+                                <% if(name == blog["username"] || name==blog["comments"][j]["username"] ) {%>
+                                    <% var link='/deletecomment/'+blog["mid"]+'/'+blog["comments"][j]["mid"] %>
+
+                                        <div class="btn btn-danger" style="font-size:10px" onclick='func("<%=link %>")'> Delete</div>
+                                        <% } %>
+
+                            </div>
+                        </div>
+                        <%- blog["comments"][j]["sbody"] %>
+                    </div>
+
+                    <%  }   %>
+            </div>
+
+
+
+
+            <form action="/addcomment/<%=blog['mid']%>" method="POST">
+                <textarea type="text" class="form-control" placeholder="Comment" name="body" rows="4" cols="50" required id="body"></textarea>
+                <!-- <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div> -->
+                <br>
+                <button class="btn btn-dark" onclick="fn()"> POST</button>
+
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script>
+        var fn = () => {
+            var x = document.getElementById("body").value;
+            var ans = "";
+            for (var i = 0; i < x.length; i++) {
+
+
+                if (x[i] == "\n" || x[i] == '\r') {
+                    ans += '<br>';
+
+                } else {
+                    ans += x[i];
+                }
+
+            }
+            console.log(ans);
+            if ('<%=name%>' !== "logedout") {
+                var y = '<div style="border:solid; margin:2% 2% 2% 10%  ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">' + "<h6>" + '<%=name%>' + " ,    Just now" + "<h6>" + "<br>" + ans + "</div>";
+                $("#comm").append(y);
+                document.getElementById("body").value = "";
+            }
+            $.post("/addcomment/<%=blog['mid']%>", {
+                body: x
+            });
+
+
+
+
+        }
+
+        function func(x) {
+            if (confirm("Do you want to delete comment?")) {
+                $.get(x, function(data, status) {
+                    console.log("Data: " + data + "\nStatus: " + status);
+                    alert(data);
+                });
+                document.getElementById(x).innerHTML = "";
+                document.getElementById(x).style = "";
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+    <input type="text" hidden value="<%=name%>" id="supername">
+    <%- include('part/footer') %>

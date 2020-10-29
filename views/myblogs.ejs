@@ -1,0 +1,95 @@
+<!-- <h1>Welcome !</h1> -->
+<%- include('part/header') %>
+
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+    <style>
+        #edit a {
+            color: white;
+            font-weight: 600;
+        }
+        
+        #edit:hover a {
+            color: white;
+        }
+    </style>
+
+    <div>
+
+        <div class="hh jumbotron">
+            <div class="float-left" style="font-weight:600;font-size:larger">
+                <% if(name !=="logedout") {%>
+                    Welcome to IIITP-BLOG,
+                    <%= name %>
+                        <%} else{ %>
+                            IIITP - BLOG
+                            <% } %>
+
+            </div>
+
+        </div>
+        <div>
+
+            <%  for(var i=blogs.length-1;i >= 0 ;i--) { %>
+                <div class="blogc" style="margin: 50px auto;padding:20px">
+
+
+                    <h1>
+                        <%= blogs[i]["title"] %>
+                    </h1>
+
+                    <div class="byuser"> By :
+                        <span class="username"> <%= blogs[i]["username"] %></span> ,
+                        <% var x= "just now" ;if( time - blogs[i].did >= 525600){ x= (parseInt((time - blogs[i].did )/ 525600))+" years ago"; } else if( time - blogs[i].did >=43200){ x= (parseInt((time - blogs[i].did )/ 43200))+" months ago" } else if( time - blogs[i].did >=10800){ x= (parseInt((time - blogs[i].did )/ 10800))+" weeks ago" }else if( time - blogs[i].did >=1440){ x= (parseInt((time - blogs[i].did )/ 1440))+" days ago" } else if( time - blogs[i].did >=60){ x= (parseInt((time - blogs[i].did )/ 60))+" hours ago" }else if( time - blogs[i].did >=0){ x= (parseInt((time - blogs[i].did )))+" min ago" }   %>
+                            <%= x %>
+                    </div>
+                    <div style="padding-left:5px" id="sbody">
+                        <%- blogs[i].sbody %>
+                    </div>
+                    <br>
+                    <div class="btn btn-outline-dark">
+                        <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
+                    </div>
+                    <div class="btn btn-danger" id="edit">
+                        <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
+                    </div>
+
+                    <!-- <h2>Comments</h2>
+        <div>
+            <%  for(var j=0;j < blogs[i]["comments"].length ;j++) { %>
+                <div style="border:solid; margin:10px 10px 10px 50px ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">
+                    <div>
+                        <h4>
+                            <%=blogs[i]["comments"][j]["username"]%> ,
+                                <%  x= "just now";var y=blogs[i]["comments"][j].did ;if( time - y >= 525600){ x= (parseInt((time - y )/ 525600))+" years ago"; } else if( time - y >=43200){ x= (parseInt((time - y )/ 43200))+" months ago" } else if( time - y >=10800){ x= (parseInt((time - y )/ 10800))+" weeks ago" }else if( time - y >=1440){ x= (parseInt((time - y )/ 1440))+" days ago" } else if( time - y >=60){ x= (parseInt((time - y )/ 60))+" hours ago" }else if( time - y >=0){ x= (parseInt((time - y )))+" min ago" }   %>
+                                    <%= x %>
+                        </h4>
+                    </div>
+                    <%- blogs[i]["comments"][j]["sbody"] %>
+                </div>
+
+                <%  }   %>
+        </div>
+
+
+
+
+        <form action="/addcomment/<%=blogs[i]['mid']%>" method="POST">
+            <textarea type="text" placeholder="Comment" name="body" rows="4" cols="50" required></textarea>
+            <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content=" press window+period(.) ">😀</div>
+            <button type="submit" class="btn btn-primary"> POST</button>
+
+        </form> -->
+                </div>
+
+                <%  }   %>
+
+        </div>
+
+    </div>
+
+    <input type="text" hidden value="<%=name%>" id="supername">
+    <%- include('part/footer') %>
