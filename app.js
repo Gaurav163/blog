@@ -93,6 +93,8 @@ const userSchema = new Schema({
 });
 
 
+
+
 var bloog = mongoose.model("bloog", BlogSchema);
 var user = mongoose.model("user", userSchema);
 var users = []
@@ -113,29 +115,64 @@ initializePassport(passport,
     id => users.find(user => user.id === id)
 );
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
+
+    res.redirect("/all/1");
 
 
+});
+
+app.get("/all/:page", async(req, res) => {
+    var page = Number(req.params.page) || 1;
     var name = "logedout";
     var time = parseInt(Date.now() / 60000);
     console.log(time);
     var username;
     var name = "logedout";
+    var pagename = "all";
     if (req.user) {
         name = req.user.username;
         username = req.user.username;
     }
 
-    blog = bloog.find({}, (e, b) => {
+    blog = await bloog.find({});
 
-        if (e) {
-            console.log(e);
-        } else {
-            res.render("index", { name: usrr(req), blogs: b, time: time, username: username });
-        }
-    })
+    var numofresults = 25;
 
+    var last = Math.ceil(blog.length / (numofresults));
+    var prev = Math.max(page - 1, 1);
+    var next = Math.min(page + 1, last);
+    var mid = Math.floor((page + last) / 2);
+    var midp = Math.floor((page + 1) / 2);
 
+    var f = 1;
+    var i1, i2;
+    i1 = (Math.max((page - 1), 0) * (numofresults));
+    i2 = i1 + numofresults;
+
+    var checkm = true,
+        checkp = true;
+
+    if (midp === page) checkp = false;
+    if (mid === page) checkm = false;
+
+    res.render("index", {
+        name: usrr(req),
+        blogs: blog.slice(i1, i2),
+        time: time,
+        pagename: pagename,
+        username: username,
+        prev: prev,
+        mid: mid,
+        midp: midp,
+        next: next,
+        first: f,
+        checkp: checkp,
+        checkm: checkm,
+        last: last,
+        page: page,
+        nos: numofresults
+    });
 })
 
 app.get("/login", checklogin, (req, res) => {
@@ -378,58 +415,154 @@ app.get("/myblogs", async(req, res) => {
     }
 })
 
-app.get("/discussion", async(req, res) => {
+app.get("/discussion/:page", async(req, res) => {
 
     var time = parseInt(Date.now() / 60000);
+    var page = Number(req.params.page);
 
+    var blog = await bloog.find({ type: "Discussion" });
+    if (blog.length) {
 
-    await bloog.find({ type: "Discussion" }, (e, b) => {
-        if (e) {
-            req.flash("error", "Some error to fing your blogs");
-            res.redirect("/");
-        } else if (b.length) {
-            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
-        } else {
-            req.flash("error", "There is no discussion");
-            res.redirect("/");
-        }
-    })
+        var pagename = "discussion";
+        var numofresults = 25;
+
+        var last = Math.ceil(blog.length / (numofresults));
+        var prev = Math.max(page - 1, 1);
+        var next = Math.min(page + 1, last);
+        var mid = Math.floor((page + last) / 2);
+        var midp = Math.floor((page + 1) / 2);
+
+        var f = 1;
+        var i1, i2;
+        i1 = (Math.max((page - 1), 0) * (numofresults));
+        i2 = i1 + numofresults;
+
+        var checkm = true,
+            checkp = true;
+        if (midp === page) checkp = false;
+        if (mid === page) checkm = false;
+        res.render("index", {
+            username: usrr(req),
+            pagename: pagename,
+            name: usrr(req),
+            blogs: blog.slice(i1, i2),
+            time: time,
+            prev: prev,
+            mid: mid,
+            midp: midp,
+            next: next,
+            first: f,
+            checkp: checkp,
+            checkm: checkm,
+            last: last,
+            page: page,
+            nos: numofresults
+        });
+    } else {
+        req.flash("error", "There is no discussion");
+        res.redirect("/");
+    }
 
 })
-app.get("/announcement", async(req, res) => {
+app.get("/announcement/:page", async(req, res) => {
 
     var time = parseInt(Date.now() / 60000);
+    var page = Number(req.params.page);
 
+    var blog = await bloog.find({ type: "Announcement" });
 
-    await bloog.find({ type: "Announcement" }, (e, b) => {
-        if (e) {
-            req.flash("error", "Some error to fing your blogs");
-            res.redirect("/");
-        } else if (b.length) {
-            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
-        } else {
-            req.flash("error", "There is no discussion");
-            res.redirect("/");
-        }
-    })
+    var pagename = "announcement";
+    if (blog.length) {
+        var numofresults = 25;
+
+        var last = Math.ceil(blog.length / (numofresults));
+        var prev = Math.max(page - 1, 1);
+        var next = Math.min(page + 1, last);
+        var mid = Math.floor((page + last) / 2);
+        var midp = Math.floor((page + 1) / 2);
+
+        var f = 1;
+        var i1, i2;
+        i1 = (Math.max((page - 1), 0) * (numofresults));
+        i2 = i1 + numofresults;
+
+        var checkm = true,
+            checkp = true;
+        if (midp === page) checkp = false;
+        if (mid === page) checkm = false;
+
+        res.render("index", {
+            username: usrr(req),
+            pagename: pagename,
+            name: usrr(req),
+            blogs: blog.slice(i1, i2),
+            time: time,
+            prev: prev,
+            mid: mid,
+            midp: midp,
+            next: next,
+            first: f,
+            checkp: checkp,
+            checkm: checkm,
+            last: last,
+            page: page,
+            nos: numofresults
+        });
+
+    } else {
+        req.flash("error", "There is no announcements");
+        res.redirect("/");
+    }
+
 
 })
-app.get("/resource", async(req, res) => {
+app.get("/resource/:page", async(req, res) => {
 
     var time = parseInt(Date.now() / 60000);
+    var page = Number(req.params.page);
 
+    var blog = await bloog.find({ type: "Resource" });
+    if (blog.length) {
 
-    await bloog.find({ type: "Resource" }, (e, b) => {
-        if (e) {
-            req.flash("error", "Some error to fing your blogs");
-            res.redirect("/");
-        } else if (b.length) {
-            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
-        } else {
-            req.flash("error", "There is no discussion");
-            res.redirect("/");
-        }
-    })
+        var pagename = "resource";
+        var numofresults = 25;
+
+        var last = Math.ceil(blog.length / (numofresults));
+        var prev = Math.max(page - 1, 1);
+        var next = Math.min(page + 1, last);
+        var mid = Math.floor((page + last) / 2);
+        var midp = Math.floor((page + 1) / 2);
+
+        var f = 1;
+        var i1, i2;
+        i1 = (Math.max((page - 1), 0) * (numofresults));
+        i2 = i1 + numofresults;
+
+        var checkm = true,
+            checkp = true;
+        if (midp === page) checkp = false;
+        if (mid === page) checkm = false;
+        res.render("index", {
+            username: usrr(req),
+            pagename: pagename,
+            name: usrr(req),
+            blogs: blog.slice(i1, i2),
+            time: time,
+            prev: prev,
+            mid: mid,
+            midp: midp,
+            next: next,
+            first: f,
+            checkp: checkp,
+            checkm: checkm,
+            last: last,
+            page: page,
+            nos: numofresults
+        });
+    } else {
+        req.flash("error", "There is no resource");
+        res.redirect("/");
+    }
 
 })
 
@@ -440,12 +573,17 @@ app.get("/userblog/:username", async(req, res) => {
 
     await bloog.find({ username: req.params.username }, (e, b) => {
         if (e) {
-            req.flash("error", "Some error to fing your blogs");
+            req.flash("error", "Some error to find your blogs");
             res.redirect("/");
         } else if (b.length) {
-            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
+            res.render("index", {
+                name: usrr(req),
+                blogs: b,
+                time: time,
+                username: usrr(req)
+            });
         } else {
-            req.flash("error", "There is no discussion");
+            req.flash("error", "There are no blogs by" + req.params.username);
             res.redirect("/");
         }
     })
@@ -567,6 +705,9 @@ function stradd(x) {
     return ans;
 }
 
-
+app.use((req, res, next) => {
+    req.flash('error', 'Page not found');
+    res.redirect('/');
+})
 
 app.listen(process.env.PORT || 3000, () => console.log('Server started on 3000!'));

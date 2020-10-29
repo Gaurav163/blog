@@ -80,8 +80,78 @@
     </div>
     <input type="text" hidden value="<%=name%>" id="supername">
 
+    <% if(checkp) {%>
+        <% if(checkm) {%>
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/<%= pagename %>/1" value="1"> First </a></li>
+                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= prev %>" value="<%= prev %>"> Prev </a></li>
+                <li class="page-item">
+                    <a class="page-link" href="/<%= pagename %>/<%= midp %>" value="<%= midp %>">
+                        <%= midp %>
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="/<%= pagename %>/<%= page %>" value="<%= page %>">
+                        <%= page %>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= next %>" value="<%= next %>"> Next </a></li>
+                <li class="page-item">
+                    <a class="page-link" href="/<%= pagename %>/<%= mid %>" value="<%= mid %>">
+                        <%= mid %>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= last %>" value="<%= last %>"> Last </a></li>
+            </ul>
+            <%} else { %>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/1" value="1"> First </a></li>
+                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= prev %>" value="<%= prev %>"> Prev </a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="/<%= pagename %>/<%= midp %>" value="<%= midp %>">
+                            <%= midp %>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="/<%= pagename %>/<%= page %>" value="<%= page %>">
+                            <%= page %>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= next %>" value="<%= next %>"> Next </a></li>
+                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= last %>" value="<%= last %>"> Last </a></li>
+                </ul>
+                <% } %>
+                    <%} else { %>
+                        <% if(checkm) {%>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="/<%= pagename %>/1" value="1"> First </a></li>
+                                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= prev %>" value="<%= prev %>"> Prev </a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="/<%= pagename %>/<%= page %>" value="<%= page %>">
+                                        <%= page %>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= next %>" value="<%= next %>"> Next </a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/<%= pagename %>/<%= mid %>" value="<%= mid %>">
+                                        <%= mid %>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= last %>" value="<%= last %>"> Last </a></li>
+                            </ul>
+                            <%} else { %>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/1" value="1"> First </a></li>
+                                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= prev %>" value="<%= prev %>"> Prev </a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="/<%= pagename %>/<%= page %>" value="<%= page %>">
+                                            <%= page %>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= next %>" value="<%= next %>"> Next </a></li>
+                                    <li class="page-item"><a class="page-link" href="/<%= pagename %>/<%= last %>" value="<%= last %>"> Last </a></li>
+                                </ul>
+                                <% } %>
+                                    <%} %>
 
-
-
-
-    <%- include('part/footer') %>
+                                        <%- include('part/footer') %>
