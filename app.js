@@ -57,6 +57,7 @@ var BlogSchema = new Schema({
     mid: String,
     body: String,
     sbody: String,
+    type: String,
     comments: [{
         username: String,
         body: String,
@@ -223,6 +224,7 @@ app.post("/addblog", async(req, res) => {
                     mid: req.user.username + (parseInt(Date.now() / 60000).toString()),
                     body: text,
                     sbody: sbody,
+                    type: req.body.type,
                     comments: [],
                     vote: 0,
                     noc: 0,
@@ -288,6 +290,7 @@ app.post("/edit/:y", async(req, res) => {
                 mid: x["mid"],
                 body: req.body.body,
                 sbody: sbody,
+                type: req.body.type,
                 comments: x["comments"],
                 vote: 0,
                 noc: 0,
@@ -363,8 +366,6 @@ app.get("/myblogs", async(req, res) => {
                 req.flash("error", "Some error to fing your blogs");
                 res.redirect("/");
             } else if (b.length) {
-                console.log(b);
-                console.log(b.length)
                 res.render("myblogs", { name: name, blogs: b, time: time });
             } else {
                 req.flash("error", "You Have Not Write Any Blog");
@@ -375,6 +376,80 @@ app.get("/myblogs", async(req, res) => {
         req.flash("error", "Please login to See Your Blog");
         res.redirect("/");
     }
+})
+
+app.get("/discussion", async(req, res) => {
+
+    var time = parseInt(Date.now() / 60000);
+
+
+    await bloog.find({ type: "Discussion" }, (e, b) => {
+        if (e) {
+            req.flash("error", "Some error to fing your blogs");
+            res.redirect("/");
+        } else if (b.length) {
+            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
+        } else {
+            req.flash("error", "There is no discussion");
+            res.redirect("/");
+        }
+    })
+
+})
+app.get("/announcement", async(req, res) => {
+
+    var time = parseInt(Date.now() / 60000);
+
+
+    await bloog.find({ type: "Announcement" }, (e, b) => {
+        if (e) {
+            req.flash("error", "Some error to fing your blogs");
+            res.redirect("/");
+        } else if (b.length) {
+            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
+        } else {
+            req.flash("error", "There is no discussion");
+            res.redirect("/");
+        }
+    })
+
+})
+app.get("/resource", async(req, res) => {
+
+    var time = parseInt(Date.now() / 60000);
+
+
+    await bloog.find({ type: "Resource" }, (e, b) => {
+        if (e) {
+            req.flash("error", "Some error to fing your blogs");
+            res.redirect("/");
+        } else if (b.length) {
+            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
+        } else {
+            req.flash("error", "There is no discussion");
+            res.redirect("/");
+        }
+    })
+
+})
+
+app.get("/userblog/:username", async(req, res) => {
+
+    var time = parseInt(Date.now() / 60000);
+
+
+    await bloog.find({ username: req.params.username }, (e, b) => {
+        if (e) {
+            req.flash("error", "Some error to fing your blogs");
+            res.redirect("/");
+        } else if (b.length) {
+            res.render("index", { name: usrr(req), blogs: b, time: time, username: usrr(req) });
+        } else {
+            req.flash("error", "There is no discussion");
+            res.redirect("/");
+        }
+    })
+
 })
 
 app.get("/blog/:id", async(req, res) => {

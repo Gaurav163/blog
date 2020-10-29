@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOGS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -44,25 +43,25 @@
             // document.getElementById("bbody").value = x + "# ";
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " # " + link;
+            document.getElementById("bbody").value = x + " ### " + link;
         }
 
         function heading2() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " ## " + link;
+            document.getElementById("bbody").value = x + " #### " + link;
         }
 
         function heading3() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " ### " + link;
+            document.getElementById("bbody").value = x + " ##### " + link;
         }
 
         function heading4() {
             var link = prompt("Please enter heading here:");
             var x = document.getElementById("bbody").value;
-            document.getElementById("bbody").value = x + " #### " + link;
+            document.getElementById("bbody").value = x + " ###### " + link;
         }
         $(document).ready(function() {
             $('[data-toggle="popover"]').popover();
@@ -71,7 +70,7 @@
 
     <style>
         .form-control {
-            max-width:500px;
+            max-width: 500px;
         }
         
          ::-webkit-scrollbar {
@@ -160,7 +159,7 @@
         
         #sbody {
             max-width: 100%;
-            max-height: 100vh;
+            max-height: 300vh;
             padding: 10px;
         }
         
@@ -249,6 +248,11 @@
         .byuser {
             font-weight: 600;
         }
+        
+        h1 {
+            font-size: 30px;
+            font-weight: 600;
+        }
     </style>
 
 </head>
@@ -266,7 +270,16 @@
 
             <ul class="navbar-nav" id="supernav">
                 <li class="nav-item rounded">
-                    <a class="nav-link rounded" href="/">Blogs</a>
+                    <a class="nav-link rounded" href="/"> ALL </a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/announcement">Announcements</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/discussion">Discussions</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link rounded" href="/resource">Resourcess</a>
                 </li>
             </ul>
 

@@ -19,6 +19,16 @@
                     <label for="user">By:</label>
                     <input class="form-control" type="text" name="username" placeholder="<%= name %>" id="user" disabled>
                 </div>
+                <div class="form-group">
+
+                    <label class="control-label" for="mode">Type:</label>
+                    <select class="form-control selectpicker" data-live-search="true" id="mode" name="type">
+                                <option value="Discussion" id="Discussion<" selected>Discussion</option>
+                                <option value="Announcement" id="Announcement">Announcement</option>
+                                <option value="Resource" id="Resource">Resource</option>
+                      </select>
+
+                </div>
                 <div class="border" style="padding:30px;width:auto;box-shadow: 2px 2px 10px grey;">
                     <div style="padding:10px">
                         <div class="btn btn-secondary" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="add image" onclick="addphoto()">📷</div>
