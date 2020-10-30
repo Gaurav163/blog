@@ -755,6 +755,7 @@ function chechAuthenticated(req, res, next) {
             return next();
         }
     } else if (req.body.email == "xxxxxxxx") {
+        req.flash("error","Please Register Yourself");
         res.redirect("/");
     } else {
         return next();
