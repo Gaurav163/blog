@@ -53,7 +53,7 @@
             <h3>Comments: </h3>
             <div id="comm">
                 <%  for(var j=0;j < blog["comments"].length ;j++) { %>
-                    <div id='<%="/deletecomment/"+blog["mid"]+"/"+blog["comments"][j]["mid"] %>' style="border:solid grey; margin:5px 5px 5px 50px ;padding: 5px 5px; max-height:200px;overflow-y:scroll;" class="rounded">
+                    <div id='<%="/deletecomment/"+blog["mid"]+"/"+blog["comments"][j]["mid"] %>' style="border:solid grey; margin:5px 5px 5px 50px ;padding: 5px 5px; max-height:200vh;overflow-y:scroll;" class="rounded">
                         <div>
                             <h6>
                                 <span class="usernamec"> <%=blog["comments"][j]["username"]%> </span>,
@@ -105,7 +105,7 @@
             }
             console.log(ans);
             if ('<%=name%>' !== "logedout") {
-                var y = '<div style="border:solid; margin:2% 2% 2% 10%  ;padding: 10px 10px; overflow-x:scroll;max-height:200px;overflow-y:scroll;">' + "<h6>" + '<%=name%>' + " ,    Just now" + "<h6>" + "<br>" + ans + "</div>";
+                var y = '<div style="border:solid; margin:2% 2% 2% 10%  ;padding: 10px 10px; overflow-x:scroll;max-height:200vh;overflow-y:scroll;">' + "<h6>" + '<%=name%>' + " ,    Just now" + "</h6>" + "<br>" + ans + "</div>";
                 $("#comm").append(y);
                 document.getElementById("body").value = "";
             }
@@ -120,12 +120,16 @@
 
         function func(x) {
             if (confirm("Do you want to delete comment?")) {
+
                 $.get(x, function(data, status) {
                     console.log("Data: " + data + "\nStatus: " + status);
+                    if (data == "comment deleted") {
+                        document.getElementById(x).innerHTML = "";
+                        document.getElementById(x).style = "";
+                    }
                     alert(data);
                 });
-                document.getElementById(x).innerHTML = "";
-                document.getElementById(x).style = "";
+
             }
         }
     </script>

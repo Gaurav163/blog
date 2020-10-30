@@ -175,7 +175,7 @@ app.get("/all/:page", async(req, res) => {
     });
 })
 
-app.get("/login", checklogin, (req, res) => {
+app.get("/login", (req, res) => {
 
     if (req.user) {
         req.flash("error", "Already Signed In");
@@ -183,6 +183,8 @@ app.get("/login", checklogin, (req, res) => {
     }
     res.render("login", { name: usrr(req) });
 })
+
+
 app.get("/updateUser", (req, res) => {
 
     user.find({}, (err, body) => {
@@ -207,7 +209,7 @@ app.get("/register", (req, res) => {
 
 })
 
-app.post("/login", passport.authenticate('local', {
+app.post("/login", chechAuthenticated, passport.authenticate('local', {
 
     successRedirect: "/",
     failureRedirect: "/",
@@ -746,10 +748,17 @@ function usrr(req) {
 
 
 function chechAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.user) {
+        if (req.user.email == req.body.email || req.body.email == "") {
+            res.redirect("/");
+        } else {
+            return next();
+        }
+    } else if (req.body.email == "xxxxxxxx") {
+        res.redirect("/");
+    } else {
         return next();
     }
-    res.redirect("/");
 }
 
 function checklogin(req, res, next) {
