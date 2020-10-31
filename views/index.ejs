@@ -39,14 +39,20 @@
                         <% var x= "just now" ;if( time - blogs[i].did >= 525600){ x= (parseInt((time - blogs[i].did )/ 525600))+" years ago"; } else if( time - blogs[i].did >=43200){ x= (parseInt((time - blogs[i].did )/ 43200))+" months ago" } else if( time - blogs[i].did >=10800){ x= (parseInt((time - blogs[i].did )/ 10800))+" weeks ago" }else if( time - blogs[i].did >=1440){ x= (parseInt((time - blogs[i].did )/ 1440))+" days ago" } else if( time - blogs[i].did >=60){ x= (parseInt((time - blogs[i].did )/ 60))+" hours ago" }else if( time - blogs[i].did >=0){ x= (parseInt((time - blogs[i].did )))+" min ago" }   %>
                             <%= x %>
                     </div>
-                    <div style="padding:10px" id="sbody">
+                    <div style="padding:10px;border-bottom:grey 2px solid">
                         <%- blogs[i].sbody %>
+                            <div class="btn btn-outline-dark">
+                                <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
+                            </div>
                     </div>
                 </div>
-
-                <div class="btn btn-outline-dark">
-                    <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
+                <div style="padding:10px">
+                    <div class="btn btn-outline-secondary" style="font-size:large" onclick='func("<%=blogs[i].mid%>")'>Like</div>
+                    <span style="font-size:large;margin:0px 10px"><%=blogs[i]['vote']%></span>
+                    <div class="btn btn-outline-secondary" style="font-size:large" onclick='func1("<%=blogs[i].mid%>")'>Dislike</div>
                 </div>
+
+
                 <% if(pagename=="myblogs"){%>
                     <div class="btn btn-danger" id="edit">
                         <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
@@ -132,5 +138,22 @@
                                 </ul>
                                 <% } %>
                                     <%} %>
+                                        <script>
+                                            function func(x) {
+                                                link = "/likeblog/" + x + "/1";
+                                                $.get(link, function(data, status) {
+                                                    alert(data);
+                                                });
+
+                                            }
+
+                                            function func1(x) {
+                                                link = "/likeblog/" + x + "/2";
+                                                $.get(link, function(data, status) {
+                                                    alert(data);
+                                                });
+
+                                            }
+                                        </script>
 
                                         <%- include('part/footer') %>

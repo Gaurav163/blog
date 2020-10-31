@@ -72,6 +72,14 @@ var BlogSchema = new Schema({
     did: Number
 })
 
+var uerlike = new Schema({
+    username: String,
+    blog: [{
+        mid: String,
+        like: Number
+    }]
+})
+
 const userSchema = new Schema({
     email: String,
     username: String,
@@ -97,6 +105,7 @@ const userSchema = new Schema({
 
 var bloog = mongoose.model("bloog", BlogSchema);
 var user = mongoose.model("user", userSchema);
+var ulike = mongoose.model("ulike", uerlike);
 var users = []
 var mess = "ok";
 
@@ -258,7 +267,7 @@ app.post("/addblog", async(req, res) => {
             await bloog.create({
                     title: req.body.title,
                     username: req.user.username,
-                    mid: req.user.username + (parseInt(Date.now() / 60000).toString()),
+                    mid: req.user.username + (parseInt(Date.now()).toString()),
                     body: text,
                     sbody: sbody,
                     type: req.body.type,
@@ -755,7 +764,7 @@ function chechAuthenticated(req, res, next) {
             return next();
         }
     } else if (req.body.email == "xxxxxxxx") {
-        req.flash("error","Please Register Yourself");
+        req.flash("error", "Please Register Yourself");
         res.redirect("/");
     } else {
         return next();
@@ -784,6 +793,81 @@ function stradd(x) {
     }
     return ans;
 }
+
+// var uerlike = new Schema({
+//     username: String,
+//     blog: [{
+//         mid: String,
+//         like: Number
+//     }]
+// })
+
+app.get("/likeblog/:bid/:type", async(req, res) => {
+    if (req.user && req.user.active == true) {
+        var name = await ulike.findOne({ username: req.user.username });
+        if (name == undefined) {
+            await ulike.create({
+                username: req.user.username,
+                bloog: []
+            });
+            name = await ulike.findOne({ username: req.user.username });
+        }
+        var blog = await bloog.findOne({ mid: req.params.bid });
+        if (blog == undefined) {
+            res.send("Blog Not Exist");
+        } else {
+            var x = 0,
+                y = 0;
+            if (name.blog.length) {
+                for (var i = 0; i < name.blog.length; i++) {
+                    if (name.blog[i].mid == req.params.bid) {
+                        x = 1;
+                        y = name.blog[i].like;
+                        break;
+                    }
+                }
+            }
+            if (x == 1) {
+                if (y == 1) {
+                    res.send("You Alredy Liked that Blog");
+                } else if (y == 2) {
+                    res.send("You Alredy Disliked that Blog");
+                }
+            } else {
+                if (req.params.type == 1)
+                    blog["vote"] += 1;
+                else if (req.params.type == 2) {
+                    blog["vote"] -= 1;
+                }
+
+                await bloog.findOneAndUpdate({ mid: blog.mid }, blog);
+                await ulike.findOneAndUpdate({ username: req.user.username }, {
+                    $push: {
+                        blog: {
+                            mid: blog.mid,
+                            like: req.params.type
+                        }
+                    }
+                });
+                if (req.params.type == 1)
+                    res.send("Your Like recorded!");
+                else if (req.params.type == 2) {
+                    res.send("Your Dislike recorded!");
+                }
+
+
+            }
+        }
+
+
+    } else if (req.user) {
+        res.send("Please verify your Email!!!");
+    } else {
+        res.send("Please Login");
+    }
+
+});
+
 
 app.use((req, res, next) => {
     req.flash('error', 'Page not found');
