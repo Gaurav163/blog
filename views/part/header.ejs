@@ -104,14 +104,14 @@
             width: 100%;
             background-color: rgb(255, 199, 197);
             padding: 10px 50px;
-            margin-bottom: 10px;
+            font-size: larger;
         }
         
         .messagecon {
             width: 100%;
             background-color: rgb(163, 240, 195);
             padding: 10px 50px;
-            margin-bottom: 10px;
+            font-size: larger;
         }
         
         .footer {
@@ -122,7 +122,6 @@
             background-color: #343a40!important;
             color: #afafaf;
             bottom: 0;
-            position: fixed;
             z-index: 9999;
             text-align: center;
         }
@@ -263,11 +262,63 @@
             font-size: 30px;
             font-weight: 600;
         }
+        
+        #notify {
+            position: fixed;
+            bottom: 45px;
+            right: 10px;
+            max-height: 31vh;
+            overflow: hidden;
+        }
+        
+        .notifyy {
+            margin: 4px;
+            background-color: #27292c;
+            opacity: 60%;
+            padding: 5px;
+            width: 200px;
+            font-size: small;
+            color: white;
+        }
+        
+        #notifybtn {
+            font-size: small;
+            margin: 4px;
+            background-color: #27292c;
+            opacity: 60%;
+            padding: 5px;
+            width: 200px;
+            color: white;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            visibility: hidden;
+        }
     </style>
 
 </head>
 
 <body>
+    <div>
+        <% if (messages.error)  { %>
+            <div class="messageerr rounded">
+
+                <div>
+                    <%= messages.error %>
+                </div>
+            </div>
+            <% } %>
+    </div>
+    <div>
+        <% if (messages.confirm)  { %>
+            <div class="messagecon rounded">
+
+                <div>
+                    <%= messages.confirm %>
+                </div>
+            </div>
+            <% } %>
+    </div>
 
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -297,24 +348,5 @@
 
         </div>
     </nav>
-    <div>
-        <% if (messages.error)  { %>
-            <div class="messageerr rounded">
 
-                <h3>
-                    <%= messages.error %>
-                </h3>
-            </div>
-            <% } %>
-    </div>
-    <div>
-        <% if (messages.confirm)  { %>
-            <div class="messagecon rounded">
-
-                <h3>
-                    <%= messages.confirm %>
-                </h3>
-            </div>
-            <% } %>
-    </div>
     <div class="container" style="box-shadow: 0px 0px 7px grey;padding:2%;margin-top:10px;margin-bottom:10px">

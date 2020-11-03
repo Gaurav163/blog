@@ -1,5 +1,9 @@
 </div>
-<div style="height:100px"></div>
+<div id="notify">
+
+</div>
+<div id="notifybtn" class="btn" onclick="closeall()">[ close all ]</div>
+<div style="height:60vh"></div>
 <div class="footer">
     Copyright &#169; IIIT Pune 2020-2030<br /> A Project by <span style="color:white;font-size: 15px;">Sarthak Gupta</span> , <span style="color:white;font-size: 15px;">Piyush Gupta</span> and <span style="color:white;font-size: 15px;">Gaurav Lathwal</span>
 </div>
@@ -12,6 +16,11 @@
         document.getElementById("supernav").innerHTML = hhp + loggedout;
     } else {
         document.getElementById("supernav").innerHTML = hhp + loggegin;
+    }
+
+    function closeall() {
+        document.getElementById("notifybtn").style.visibility = "hidden";
+        document.getElementById("notify").innerHTML = "";
     }
 </script>
 </body>

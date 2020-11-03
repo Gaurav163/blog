@@ -44,20 +44,21 @@
                             <div class="btn btn-outline-dark">
                                 <a href="/blog/<%=blogs[i]['mid']%>">READ MORE</a>
                             </div>
+                            <% if(pagename=="myblogs"){%>
+                                <div class="btn btn-danger" id="edit">
+                                    <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
+                                </div>
+                                <%}%>
                     </div>
                 </div>
                 <div style="padding:10px">
-                    <div class="btn btn-secondary"  onclick='func("<%=blogs[i].mid%>")'>Like</div>
+                    <div class="btn btn-secondary" id="likebtn<%=blogs[i].mid%>" onclick='func("<%=blogs[i].mid%>")'>Like</div>
                     <span style="margin:0px 10px"><%=blogs[i]['vote']%></span>
-                    <div class="btn btn-secondary"  onclick='func1("<%=blogs[i].mid%>")'>Dislike</div>
+                    <div class="btn btn-secondary" id="dlikebtn<%=blogs[i].mid%>" onclick='func1("<%=blogs[i].mid%>")'>Dislike</div>
                 </div>
 
 
-                <% if(pagename=="myblogs"){%>
-                    <div class="btn btn-danger" id="edit">
-                        <a href="/editblog/<%=blogs[i]['mid']%>">EDIT</a>
-                    </div>
-                    <%}%>
+
             </div>
 
             <%  }   %>
@@ -139,10 +140,31 @@
                                 <% } %>
                                     <%} %>
                                         <script>
+                                            if (document.getElementById("supername").value != "logedout") {
+                                                $.get("/getlikedata", function(data, status) {
+                                                    console.log(data);
+                                                    for (var i = 0; i < data.length; i++) {
+                                                        var x;
+                                                        if (data[i].like == 1) {
+                                                            x = "likebtn" + data[i].mid;
+                                                        } else {
+                                                            x = "dlikebtn" + data[i].mid;
+                                                        }
+                                                        document.getElementById(x).style.backgroundColor = "black";
+                                                    }
+                                                });
+                                            }
+
                                             function func(x) {
                                                 link = "/likeblog/" + x + "/1";
                                                 $.get(link, function(data, status) {
-                                                    alert(data);
+                                                    var x = document.getElementById("notify").innerHTML;
+                                                    if (x == "") {
+                                                        document.getElementById("notify").innerHTML = "<div class='notifyy rounded'>" + data + "</div>";
+                                                    } else {
+                                                        document.getElementById("notify").innerHTML = "<div class='notifyy rounded'>" + data + "</div>" + x;
+                                                    }
+                                                    document.getElementById("notifybtn").style.visibility = "visible";
                                                 });
 
                                             }
@@ -150,7 +172,13 @@
                                             function func1(x) {
                                                 link = "/likeblog/" + x + "/2";
                                                 $.get(link, function(data, status) {
-                                                    alert(data);
+                                                    var x = document.getElementById("notify").innerHTML;
+                                                    if (x == "") {
+                                                        document.getElementById("notify").innerHTML = "<div class='notifyy rounded'>" + data + "</div>";
+                                                    } else {
+                                                        document.getElementById("notify").innerHTML = "<div class='notifyy rounded'>" + data + "</div>" + x;
+                                                    }
+                                                    document.getElementById("notifybtn").style.visibility = "visible";
                                                 });
 
                                             }
