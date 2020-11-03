@@ -127,7 +127,9 @@
                         document.getElementById(x).innerHTML = "";
                         document.getElementById(x).style = "";
                     }
-                    alert(data);
+                    var y = document.getElementById("notify").innerHTML;
+                    document.getElementById("notify").innerHTML = "<div class='notifyy rounded'>" + data + "</div>" + y;
+                    document.getElementById("notifybtn").style.visibility = "visible";
                 });
 
             }

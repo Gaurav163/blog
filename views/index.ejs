@@ -150,7 +150,9 @@
                                                         } else {
                                                             x = "dlikebtn" + data[i].mid;
                                                         }
-                                                        document.getElementById(x).style.backgroundColor = "black";
+                                                        var y = document.getElementById(x);
+                                                        if (y)
+                                                            document.getElementById(x).style.backgroundColor = "black";
                                                     }
                                                 });
                                             }

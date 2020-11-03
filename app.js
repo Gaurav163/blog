@@ -871,15 +871,13 @@ app.get("/likeblog/:bid/:type", async(req, res) => {
 app.get("/getlikedata", async(req, res) => {
     if (req.user) {
         var data = await ulike.findOne({ username: req.user.username });
-
-        console.log(data.blog);
         res.json(data.blog);
     }
 })
 
 
 app.use((req, res, next) => {
-    req.flash('error', 'Page not found');
+
     res.redirect('/');
 })
 
