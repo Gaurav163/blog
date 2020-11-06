@@ -3,8 +3,9 @@
 
 </div>
 <div id="notifybtn" class="btn" onclick="closeall()">[ close all ]</div>
-<div style="height:60vh"></div>
+
 <div class="footer">
+    <div id="clock"></div>
     Copyright &#169; IIIT Pune 2020-2030<br /> A Project by <span style="color:white;font-size: 15px;">Sarthak Gupta</span> , <span style="color:white;font-size: 15px;">Piyush Gupta</span> and <span style="color:white;font-size: 15px;">Gaurav Lathwal</span>
 </div>
 <script>
@@ -17,6 +18,13 @@
     } else {
         document.getElementById("supernav").innerHTML = hhp + loggegin;
     }
+
+    var upd = setInterval(() => {
+        var cd = new Date();
+        cd = cd.toString();
+        cd = cd.split(" GMT");
+        document.getElementById('clock').innerHTML = cd[0] + " GMT" + cd[1];
+    }, 500);
 
     function closeall() {
         document.getElementById("notifybtn").style.visibility = "hidden";
