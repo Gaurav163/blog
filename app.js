@@ -15,7 +15,7 @@ var domPurify = createDom(new JSDOM().window);
 var nodemailer = require('nodemailer');
 var emailconname = "iiitbloog@gmail.com";
 var emailconpass = "Gaurav@63";
-var reg_req = "http://contest-iiitp2.centralindia.azurecontainer.io:5000/users/register/";
+var reg_req = "https://contestiiitp.herokuapp.com/users/register";
 
 const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
