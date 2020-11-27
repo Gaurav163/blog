@@ -1,4 +1,4 @@
-# blog
+# Blog
 ## There are three types of blogs
 - Discussion : This types of blogs include discussion on some problem.
 - Resources : These blogs constains study resources.
